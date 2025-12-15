@@ -19,3 +19,4 @@ data/*
 !data/*.dvc
 models/*
 !models/*.dvc
+logs/

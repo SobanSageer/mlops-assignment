@@ -4,13 +4,17 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import LabelEncoder
 import joblib
+import chardet
 
 # Paths
 DATA_PATH = "data/dataset.csv"
 MODEL_PATH = "models/model.pkl"
 
 # Load dataset
-df = pd.read_csv(DATA_PATH, encoding='utf-16')
+with open(DATA_PATH, 'rb') as f:
+    result = chardet.detect(f.read())
+    encoding = result['encoding']
+df = pd.read_csv(DATA_PATH, encoding=encoding)
 
 # Encode categorical column
 if "smoker" in df.columns:
